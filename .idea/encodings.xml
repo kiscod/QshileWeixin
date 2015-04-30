@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/util/Date.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kiscod/po/TextMessage.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kiscod/servlet/WeixinServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/kiscod/util/MessageUtil.java" charset="UTF-8" />
+  </component>
+</project>
