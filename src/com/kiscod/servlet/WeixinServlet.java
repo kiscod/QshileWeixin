@@ -6,7 +6,6 @@ import com.kiscod.util.MessageUtil;
 import org.dom4j.DocumentException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -98,7 +97,8 @@ public class WeixinServlet extends javax.servlet.http.HttpServlet {
                 if("1".equals(content)){
                     message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.firstMenu());
                 } else if("2".equals(content)){
-                    message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.secondMenu());
+//                    message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.secondMenu());
+                    message = MessageUtil.initNewsMessage(toUserName, fromUserName);
                 } else if("?".equals(content) || "？".equals(content)){
                     message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
                 } else {

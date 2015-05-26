@@ -23,5 +23,6 @@
     <orderEntry type="library" name="xmlpull_1_0_5" level="project" />
     <orderEntry type="library" name="servlet-api" level="project" />
     <orderEntry type="library" name="xstream-1.4.8" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
   </component>
 </module>

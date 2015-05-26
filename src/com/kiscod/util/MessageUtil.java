@@ -1,5 +1,8 @@
 package com.kiscod.util;
 
+
+import com.kiscod.po.News;
+import com.kiscod.po.NewsMessage;
 import com.kiscod.po.TextMessage;
 import com.thoughtworks.xstream.XStream;
 import org.dom4j.Document;
@@ -10,10 +13,7 @@ import org.dom4j.io.SAXReader;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -36,6 +36,7 @@ public class MessageUtil {
     public static final String MESSAGE_UNSUBSCRIBE  = "unsubscribe";
     public static final String MESSAGE_CLICK        = "CLICK";
     public static final String MESSAGE_VIEW         = "VIEW";
+    public static final String MESSAGE_NEWS         = "news";
 
 
     public static Map<String, String> xmlToMap(HttpServletRequest request) throws IOException, DocumentException {
@@ -90,4 +91,48 @@ public class MessageUtil {
         sb.append("邱世乐是个男生， 180cm, 76kg。");
         return sb.toString();
     }
+
+    /**
+     * 图文消息转为xml
+     * @param newsMessage
+     * @return
+     */
+    public static String newsMessageToXml(NewsMessage newsMessage){
+        XStream xStream = new XStream();
+        xStream.alias("xml", newsMessage.getClass());
+        xStream.alias("item", new News().getClass());
+        return xStream.toXML(newsMessage);
+    }
+
+    /**
+     * 图文消息的组装
+     * @param toUserName
+     * @param fromUserName
+     * @return
+     */
+    public static String initNewsMessage(String toUserName, String fromUserName) {
+        String message = null;
+        List<News> newsList = new ArrayList<>();
+        NewsMessage newsMessage = new NewsMessage();
+
+        News news = new News();
+        news.setTitle("邱世乐介绍");
+        news.setDescription("邱世乐是个男生， 180cm, 76kg。");
+        news.setPicUrl("http://qingfeng.tunnel.mobi/image/shile.jpg");
+        news.setUrl("www.kiscod.com");
+
+        newsList.add(news);
+
+        newsMessage.setToUserName(fromUserName);
+        newsMessage.setFromUserName(toUserName);
+        newsMessage.setCreateTime(new Date().getTime());
+        newsMessage.setMsgType(MESSAGE_NEWS);
+        newsMessage.setArticles(newsList);
+        newsMessage.setArticleCount(newsList.size());
+
+        message = newsMessageToXml(newsMessage);
+
+        return message;
+    }
+
 }
