@@ -7,6 +7,12 @@
         <element id="directory" name="classes">
           <element id="module-output" name="QshileWeixin" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="dom4j-1.6.1" />
+          <element id="library" level="project" name="xmlpull_1_0_5" />
+          <element id="library" level="project" name="xstream-1.4.8" />
+          <element id="library" level="project" name="lib" />
+        </element>
       </element>
     </root>
   </artifact>
