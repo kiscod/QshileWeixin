@@ -1,9 +1,7 @@
 package com.kiscod.util;
 
 
-import com.kiscod.po.News;
-import com.kiscod.po.NewsMessage;
-import com.kiscod.po.TextMessage;
+import com.kiscod.po.*;
 import com.thoughtworks.xstream.XStream;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -104,6 +102,16 @@ public class MessageUtil {
         return xStream.toXML(newsMessage);
     }
 
+
+     public static String imageMessageToXml(ImageMessage imageMessage){
+        XStream xStream = new XStream();
+        xStream.alias("xml", imageMessage.getClass());
+        xStream.alias("item", new News().getClass());
+        return xStream.toXML(imageMessage);
+    }
+
+
+
     /**
      * 图文消息的组装
      * @param toUserName
@@ -135,4 +143,26 @@ public class MessageUtil {
         return message;
     }
 
+
+    /**
+     * 组装图片消息
+     * @param toUserName
+     * @param fromUserName
+     * @return
+     */
+    public static String initImageMessage (String toUserName, String fromUserName) {
+        String message = null;
+
+        Image image = new Image();
+        image.setMediaId("8HDgfa7J3yw0ldRGD3q9aE1-Zt-O5oBBAa6_2Ul9HwySnmRfTYA2TmEDd6bEuXtI");
+        ImageMessage imageMessage = new ImageMessage();
+        imageMessage.setFromUserName(toUserName);
+        imageMessage.setToUserName(fromUserName);
+        imageMessage.setMsgType(MESSAGE_IMAGE);
+        imageMessage.setCreateTime(new Date().getTime());
+        imageMessage.setImage(image);
+
+        message = imageMessageToXml(imageMessage);
+        return message;
+    }
 }
