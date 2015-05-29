@@ -101,6 +101,8 @@ public class WeixinServlet extends javax.servlet.http.HttpServlet {
                     message = MessageUtil.initNewsMessage(toUserName, fromUserName);
                 } else if("3".equals(content)){
                     message = MessageUtil.initImageMessage(toUserName, fromUserName);
+                 } else if("4".equals(content)){
+                    message = MessageUtil.initMusicMessage(toUserName, fromUserName);
                 } else if("?".equals(content) || "？".equals(content)){
                     message = MessageUtil.initText(toUserName, fromUserName, MessageUtil.menuText());
                 } else {

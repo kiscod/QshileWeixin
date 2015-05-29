@@ -23,8 +23,8 @@ public class WeixinTest {
 
         String path = "D:/Pictures/160.jpg";
         try {
-            String mediaId = WeixinUtil.upload(path, token.getToken(), "image");
-            System.out.println(mediaId);
+            String mediaId = WeixinUtil.upload(path, token.getToken(), "thumb");
+            System.out.println("mediaId::" + mediaId);
         } catch (IOException e) {
             e.printStackTrace();
         }

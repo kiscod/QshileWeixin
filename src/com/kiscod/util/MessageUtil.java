@@ -25,6 +25,7 @@ public class MessageUtil {
 
     public static final String MESSAGE_TEXT         = "text";
     public static final String MESSAGE_IMAGE        = "image";
+    public static final String MESSAGE_MUSIC        = "music";
     public static final String MESSAGE_VOICE        = "voice";
     public static final String MESSAGE_VIDEO        = "video";
     public static final String MESSAGE_LINK         = "link";
@@ -110,6 +111,13 @@ public class MessageUtil {
         return xStream.toXML(imageMessage);
     }
 
+    public static String musicMessageToXml(MusicMessage musicMessage){
+        XStream xStream = new XStream();
+        xStream.alias("xml", musicMessage.getClass());
+        xStream.alias("item", new News().getClass());
+        return xStream.toXML(musicMessage);
+    }
+
 
 
     /**
@@ -163,6 +171,34 @@ public class MessageUtil {
         imageMessage.setImage(image);
 
         message = imageMessageToXml(imageMessage);
+        return message;
+    }
+
+    /**
+     * 组装音乐消息
+     * @param toUserName
+     * @param fromUserName
+     * @return
+     */
+    public static String initMusicMessage (String toUserName, String fromUserName) {
+        String message = null;
+
+        Music music = new Music();
+        music.setThumbMediaId("CtFUR19tXGEKDt-QYXLZWhciwAUykd82VrTKs3ZnirhQIX_h2WpGWMbekotI03le");
+        music.setTitle("see you again");
+        music.setDescription("速7片尾曲");
+        music.setMusicUrl("http://qingfeng.tunnel.mobi/resource/see you again.mp3");
+        music.setHQMusicUrl("http://qingfeng.tunnel.mobi/resource/Wiz Khalifa,Charlie Puth - See You Again.mp3");
+
+
+        MusicMessage musicMessage = new MusicMessage();
+        musicMessage.setFromUserName(toUserName);
+        musicMessage.setToUserName(fromUserName);
+        musicMessage.setMsgType(MESSAGE_MUSIC);
+        musicMessage.setCreateTime(new Date().getTime());
+        musicMessage.setMusic(music);
+
+        message = musicMessageToXml(musicMessage);
         return message;
     }
 }

@@ -160,7 +160,11 @@ public class WeixinUtil {
 
         JSONObject jsonObject = JSONObject.fromObject(result);
         System.out.println(jsonObject);
-        String mediaId = jsonObject.getString("media_id");
+        String typeName = "media_id";
+        if (!"image".equals(type)) {
+            typeName = type + "_media_id";
+        }
+        String mediaId = jsonObject.getString(typeName);
         return mediaId;
     }
 
